@@ -28,6 +28,7 @@
       <div class="nav-links">
         <a href="#overview">Overview</a>
         <a href="#methods">Methods</a>
+        <a href="#visuals">Figures</a>
         <a href="#results">Results</a>
         <a href="#resources">Resources</a>
       </div>
@@ -36,6 +37,8 @@
         <div class="mobile-menu-links">
           <a href="#overview">Overview</a>
           <a href="#methods">Methods</a>
+          <a href="#visuals">Figures</a>
+          <a href="#papers">Papers</a>
           <a href="#results">Results</a>
           <a href="#resources">Resources</a>
           <a href="assets/research-report.pdf" target="_blank" rel="noopener">Research report ↗</a>
@@ -95,6 +98,33 @@
       </div>
     </section>
 
+
+    <section class="section visual-atlas-section" id="visuals" aria-labelledby="visuals-title">
+      <div class="shell">
+        <div class="section-heading">
+          <div><div class="eyebrow">FIELD NOTES <span class="eyebrow-rule"></span> MICROSCOPY &amp; DATA</div><h2 id="visuals-title">The world beneath<br><span>the microscope.</span></h2></div>
+          <p>Real microscopy examples from the project materials make the segmentation problem concrete: crowded colonies, elongated cells, and evolving cell identities.</p>
+        </div>
+        <div class="atlas-grid">
+          <figure class="visual-card visual-card-feature">
+            <a class="figure-image-link" href="assets/bacterial-morphologies.webp" target="_blank" rel="noopener" aria-label="Open enlarged examples of bacterial cell morphology"><img src="assets/bacterial-morphologies.webp" loading="lazy" decoding="async" width="2074" height="892" alt="Phase-contrast microscopy examples showing rod-shaped, segmented, touching, and highly elongated bacterial cells"></a>
+            <figcaption><span class="visual-kicker">BIOLOGICAL CHALLENGE / 01</span><strong>Shape is not constant.</strong><span>Typical rod-shaped cells coexist with crowded, extended, and filamentous morphologies. Examples assembled for the project literature survey; images from the cited microscopy literature.</span></figcaption>
+          </figure>
+          <figure class="visual-card">
+            <a class="figure-image-link" href="assets/colony-growth-timelapse.webp" target="_blank" rel="noopener" aria-label="Open enlarged bacterial colony time-lapse comparison"><img src="assets/colony-growth-timelapse.webp" loading="lazy" decoding="async" width="1160" height="725" alt="Three representative time-lapse frames illustrating how a bacterial colony becomes more densely packed over time"></a>
+            <figcaption><span class="visual-kicker">TEMPORAL CHALLENGE / 02</span><strong>Colonies change with time.</strong><span>Representative colony-growth sequence reproduced in the project's dataset survey; increasingly dense populations create difficult object associations.</span></figcaption>
+          </figure>
+        </div>
+        <div class="microtask-heading"><span>ONE FRAME / THREE REPRESENTATIONS</span><p>The same kind of image data is interpreted as pixels, cell instances, and tracked identities.</p></div>
+        <div class="microtask-grid">
+          <figure><a href="assets/microscopy-raw.webp" target="_blank" rel="noopener"><img src="assets/microscopy-raw.webp" loading="lazy" decoding="async" width="404" height="312" alt="Grayscale microscopy frame of bacterial cell colony"></a><figcaption><span>01</span> Raw microscopy</figcaption></figure>
+          <figure><a href="assets/microscopy-masks.webp" target="_blank" rel="noopener"><img src="assets/microscopy-masks.webp" loading="lazy" decoding="async" width="364" height="312" alt="Colored instance segmentation masks separating bacteria in the same frame"></a><figcaption><span>02</span> Instance masks</figcaption></figure>
+          <figure><a href="assets/microscopy-tracked.webp" target="_blank" rel="noopener"><img src="assets/microscopy-tracked.webp" loading="lazy" decoding="async" width="416" height="312" alt="Tracking overlay with colored cell identities on a grayscale microscopy frame"></a><figcaption><span>03</span> Tracking overlay</figcaption></figure>
+        </div>
+        <p class="asset-credit">Figures assembled from the uploaded PURE research materials; microscopy crops come from the project's tracking demonstrations. <a href="assets/research-report.pdf" target="_blank" rel="noopener">See source report ↗</a></p>
+      </div>
+    </section>
+
     <section class="section methods-section" id="methods" aria-labelledby="methods-title">
       <div class="shell">
         <div class="section-heading section-heading-on-dark"><div><div class="eyebrow eyebrow-light">02 <span class="eyebrow-rule"></span> METHODOLOGY</div><h2 id="methods-title">From an image<br><span>to an identity.</span></h2></div><p>This research used a modular view of the single-cell analysis workflow. The methods below were studied and evaluated across two separate experimental setups.</p></div>
@@ -105,6 +135,38 @@
           <article class="flow-card"><div class="flow-num">04 <span class="flow-arrow" aria-hidden="true">↗</span></div><div class="flow-art"><svg viewBox="0 0 220 110" role="img" aria-label="Illustration of measured tracking accuracy"><path d="M21 89H201" stroke="#49626b" stroke-width="2"/><rect x="34" y="42" width="29" height="47" fill="#5d8b87"/><rect x="81" y="21" width="29" height="68" fill="#a8f3d0"/><rect x="128" y="30" width="29" height="59" fill="#70d5bc"/><rect x="175" y="52" width="24" height="37" fill="#5d8b87"/><path d="M34 31L83 16L143 21L186 39" stroke="#dfd8b4" stroke-width="2" fill="none"/></svg></div><h3>Evaluation</h3><p>Compare masks and links using IoU, TRA, HOTA, precision, recall, and F1.</p><div class="flow-meta">OUTPUT / QUANTITATIVE METRICS</div></article>
         </div>
         <div class="methods-bottom"><span><span class="bottom-accent" aria-hidden="true">✳</span> A modular research pipeline</span><p>Segmentation errors propagate downstream: a missing or merged cell can break an otherwise correct lineage.</p></div>
+
+        <div class="architecture-block" aria-labelledby="architecture-title">
+          <div class="architecture-intro"><div><div class="eyebrow eyebrow-light">MODEL ANATOMY <span class="eyebrow-rule"></span> SCHEMATICS</div><h3 id="architecture-title">Inside the pipeline.</h3></div><p>Conceptual illustrations of the methods studied in the internship, redrawn for explanation rather than copied from the original publication figures.</p></div>
+          <figure class="architecture-main">
+            <a href="assets/research-workflow.svg" target="_blank" rel="noopener" aria-label="Open full-resolution research workflow diagram"><img src="assets/research-workflow.svg" loading="lazy" width="1200" height="430" alt="Conceptual research workflow linking microscopy, segmentation, temporal tracking, and evaluation"></a>
+            <figcaption><strong>Research workflow</strong><span>Raw frames → masks → temporal links → measurements. This modular design allows segmentation quality to be varied while keeping the tracker fixed.</span></figcaption>
+          </figure>
+          <div class="architecture-grid">
+            <figure class="architecture-card">
+              <a href="assets/omnipose-concept.svg" target="_blank" rel="noopener"><img src="assets/omnipose-concept.svg" loading="lazy" width="1200" height="520" alt="Original conceptual drawing of the Omnipose model pipeline, including image input, learned boundary and distance/flow information, and instance mask reconstruction"></a>
+              <figcaption><span class="visual-kicker">SEGMENTATION MODEL</span><strong>Omnipose</strong><p>Boundary, distance-field, and flow information support accurate segmentation of morphologically diverse cells.</p><a href="https://doi.org/10.1038/s41592-022-01639-4" target="_blank" rel="noopener">Cutler et al. (2022) ↗</a></figcaption>
+            </figure>
+            <figure class="architecture-card">
+              <a href="assets/trackastra-architecture.svg" target="_blank" rel="noopener"><img src="assets/trackastra-architecture.svg" loading="lazy" width="1200" height="520" alt="Original conceptual drawing of Trackastra with object tokens, encoder decoder transformer, pairwise association matrix and ILP linking"></a>
+              <figcaption><span class="visual-kicker">TRACKING MODEL</span><strong>Trackastra</strong><p>Object tokens are processed with transformer attention to predict associations, including mother–daughter links.</p><a href="https://arxiv.org/abs/2405.15700" target="_blank" rel="noopener">Gallusser &amp; Weigert (2024) ↗</a></figcaption>
+            </figure>
+          </div>
+          <p class="architecture-note">Architectural drawings are original educational schematics based on the cited methods. They are not claimed as new models developed during PURE.</p>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="section dataset-section" id="datasets" aria-labelledby="datasets-title">
+      <div class="shell">
+        <div class="section-heading"><div><div class="eyebrow">DATASET LANDSCAPE <span class="eyebrow-rule"></span> LITERATURE SURVEY</div><h2 id="datasets-title">Different subjects.<br><span>Different signals.</span></h2></div><p>Benchmark datasets vary across organisms and microscopy modalities. A careful dataset review preceded the hands-on Trackastra experiments.</p></div>
+        <figure class="dataset-hero"><a class="figure-image-link" href="assets/trackastra-dataset-examples.webp" target="_blank" rel="noopener"><img src="assets/trackastra-dataset-examples.webp" loading="lazy" decoding="async" width="2586" height="878" alt="Comparison of three benchmark data types used in the Trackastra literature: bacterial microscopy and tracks, fluorescent cell nuclei in DeepCell, and synthetic vesicle tracking"></a><figcaption><span class="visual-kicker">DATASETS IN THE TRACKASTRA PAPER</span><strong>BACTERIA / DeepCell / VESICLE</strong><span>Illustrative examples reproduced in the project literature review from Gallusser &amp; Weigert (2024). Only the bacterial sequence was used for the project's reported 29-frame benchmark; the other datasets were reviewed, not evaluated in that experiment.</span></figcaption></figure>
+        <div class="dataset-details">
+          <div><span>01 / BACTERIA</span><h3>Dense, dividing colonies</h3><p>Bacterial microscopy with masks and lineage labels; the setting closest to the project's Trackastra experiments.</p></div>
+          <div><span>02 / DEEPCELL</span><h3>Fluorescent cell nuclei</h3><p>A distinct object-tracking domain used in the Trackastra study; included here for methodological comparison.</p></div>
+          <div><span>03 / VESICLE</span><h3>Fluorescent particles</h3><p>A tracking benchmark with different object dynamics; reviewed as part of the wider literature.</p></div>
+        </div>
       </div>
     </section>
 
@@ -125,8 +187,37 @@
         </div>
         <div class="table-card"><div class="table-card-heading"><h3>Trackastra benchmark — full results</h3><span>29-FRAME SEQUENCE / CTC EVALUATION</span></div><div class="table-scroll"><table><caption class="sr-only">Trackastra tracking benchmark using ground-truth and Omnipose masks with greedy and integer linear programming linking</caption><thead><tr><th scope="col">Segmentation input</th><th scope="col">Linking</th><th scope="col">DET ↑</th><th scope="col">TRA ↑</th><th scope="col">HOTA ↑</th><th scope="col">IDF1 ↑</th><th scope="col">AOGM ↓</th></tr></thead><tbody><tr><td>Ground truth</td><td>Greedy</td><td>0.9945</td><td>0.9930</td><td>0.9898</td><td>0.9863</td><td>44.5</td></tr><tr class="table-best"><td>Ground truth <span class="tiny-chip">BEST TRA</span></td><td>ILP</td><td>1.0000</td><td><strong>0.9984</strong></td><td>0.9975</td><td>0.9964</td><td>10.0</td></tr><tr><td>Omnipose</td><td>Greedy</td><td>0.9804</td><td>0.9671</td><td>0.9048</td><td>0.9047</td><td>208.0</td></tr><tr><td>Omnipose</td><td>ILP</td><td>0.9800</td><td>0.9668</td><td>0.9035</td><td>0.9049</td><td>210.0</td></tr></tbody></table></div><p class="table-footnote">Results from the project’s independent trpL/150310-11 experiment. These are not results from the separate custom 50-frame comparison in the broader project.</p></div>
         <figure class="tracking-figure"><img src="assets/tracking-comparison.webp" loading="lazy" alt="Three time points from a tracking experiment, each showing raw bacterial microscopy, input masks, tracked objects, and an overlay of tracking identities on the original image" width="1684" height="1084"><figcaption><span>FIGURE 01</span> Trackastra tracking examples at three selected frames. Each row shows raw input, segmentation, tracking output, and the corresponding overlay. Adapted from the project report, Figure 7.</figcaption></figure>
+
+        <figure class="result-diagram"><a href="assets/segmentation-tracking-effect.svg" target="_blank" rel="noopener"><img src="assets/segmentation-tracking-effect.svg" loading="lazy" width="1200" height="410" alt="Conceptual comparison showing how missed and merged segmentation masks lead to gaps, incorrect associations and lineage tracking errors"></a><figcaption><span>ERROR PROPAGATION</span> Schematic explanation of why detection errors lower the performance of a downstream cell tracker. An original illustration, not a measured experiment.</figcaption></figure>
         <div class="second-results" id="omnisegger-results"><div><span class="number-tag">FINDING 02 <span class="number-tag-dot">·</span> OMNISEGGER / BACTRACK</span><h3>Reproducible masks.<br><em>Consistent links.</em></h3><p>On the 141-frame <em>xy5</em> sequence, the local Omnipose run closely reproduced the published segmentation outputs. Bactrack then produced highly consistent temporal links across both mask sets.</p><p class="fine-print">Tracking and division F1 values here measure agreement between two Bactrack runs, not accuracy against independently annotated tracking ground truth.</p></div><div class="outcome-grid"><div class="outcome"><span>SEGMENTATION</span><strong>0.9824</strong><p>Mean matched IoU</p></div><div class="outcome"><span>SEGMENTATION</span><strong>0.9825</strong><p>F1 score</p></div><div class="outcome"><span>TRACK AGREEMENT</span><strong>0.9967</strong><p>Temporal-link F1</p></div><div class="outcome"><span>DIVISION AGREEMENT</span><strong>0.9613</strong><p>Division-event F1</p></div></div></div>
         <div class="results-takeaway"><span class="asterisk" aria-hidden="true">✳</span><p>Across both experiments, the same conclusion emerged: <strong>segmentation is not just a preprocessing step. It is a determining factor in the reliability of single-cell tracking.</strong></p></div>
+      </div>
+    </section>
+
+
+    <section class="section literature-section" id="papers" aria-labelledby="papers-title">
+      <div class="shell">
+        <div class="section-heading"><div><div class="eyebrow">SELECTED LITERATURE <span class="eyebrow-rule"></span> OPEN-ACCESS FIGURES</div><h2 id="papers-title">Methods that shaped<br><span>the investigation.</span></h2></div><p>Published figures explain why bacterial cell morphology matters and how model design affects the fidelity of individual masks.</p></div>
+        <div class="literature-grid">
+          <figure class="literature-figure"><a class="figure-image-link" href="assets/omnipose-paper-figure2.webp" target="_blank" rel="noopener"><img src="assets/omnipose-paper-figure2.webp" loading="lazy" decoding="async" width="1219" height="645" alt="Original Omnipose figure depicting boundary distance and flow representations and comparisons between standard and suppressed Euler integration for bacterial mask reconstruction"></a><figcaption><span class="visual-kicker">PAPER FIGURE / OMNIPOSE FIG. 2</span><strong>Representing a cell without a single center.</strong><span>The Omnipose paper illustrates distance and flow representations and improved mask reconstruction for complex bacterial shapes.</span><small>Adapted by cropping from Cutler et al., <em>Nature Methods</em> (2022), Fig. 2. <a href="https://doi.org/10.1038/s41592-022-01639-4" target="_blank" rel="noopener">Original article ↗</a> · <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>.</small></figcaption></figure>
+          <figure class="literature-figure"><a class="figure-image-link" href="assets/omnipose-paper-figure3.webp" target="_blank" rel="noopener"><img src="assets/omnipose-paper-figure3.webp" loading="lazy" decoding="async" width="1206" height="781" alt="Original Omnipose research figure comparing segmentation performance curves and showing segmentation boundaries for elongated and mixed bacterial morphologies"></a><figcaption><span class="visual-kicker">PAPER FIGURE / OMNIPOSE FIG. 3</span><strong>Comparing segmentation across morphologies.</strong><span>Published benchmark curves and microscopy examples illustrate where morphology-independent segmentation is valuable.</span><small>Adapted by cropping from Cutler et al., <em>Nature Methods</em> (2022), Fig. 3. <a href="https://doi.org/10.1038/s41592-022-01639-4" target="_blank" rel="noopener">Original article ↗</a> · <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>.</small></figcaption></figure>
+        </div>
+        <div class="paper-links" aria-label="Related research papers">
+          <a href="https://arxiv.org/abs/2405.15700" target="_blank" rel="noopener"><span>TRACKING / 2024</span><strong>Trackastra</strong><span>Transformer-based cell tracking <i aria-hidden="true">↗</i></span></a>
+          <a href="https://doi.org/10.1038/s41592-022-01639-4" target="_blank" rel="noopener"><span>SEGMENTATION / 2022</span><strong>Omnipose</strong><span>Morphology-independent bacterial segmentation <i aria-hidden="true">↗</i></span></a>
+          <a href="https://doi.org/10.1371/journal.pcbi.1013088" target="_blank" rel="noopener"><span>PIPELINE / 2025</span><strong>OmniSegger</strong><span>Time-lapse analysis for bacterial cells <i aria-hidden="true">↗</i></span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section collaboration-section" aria-labelledby="collaboration-title">
+      <div class="shell">
+        <div class="collaboration-head"><div><div class="eyebrow">BROADER PROJECT CONTEXT <span class="eyebrow-rule"></span> COLLABORATIVE POSTER</div><h2 id="collaboration-title">From tracking to<br><span>biological meaning.</span></h2></div><p>The collaborative PURE poster also describes CiproSeg, a U-Net-based segmentation framework, and cell-morphology quantification. These are shown as <strong>collaborative project context</strong> rather than results of Mahla's individual tracking benchmark.</p></div>
+        <div class="collaboration-grid">
+          <figure><a href="assets/ciproseg-workflow-context.webp" target="_blank" rel="noopener"><img src="assets/ciproseg-workflow-context.webp" loading="lazy" decoding="async" width="1639" height="1378" alt="Collaborative PURE project poster workflow illustrating microscopy acquisition, U-Net segmentation and downstream biological morphology analysis"></a><figcaption><strong>Collaborative workflow</strong><span>Experimental imaging → deep-learning analysis → biological morphology, illustrated in the PURE project poster.</span></figcaption></figure>
+          <figure><a href="assets/ciproseg-morphology-plots.webp" target="_blank" rel="noopener"><img src="assets/ciproseg-morphology-plots.webp" loading="lazy" decoding="async" width="1617" height="899" alt="Plots from collaborative CiproSeg poster comparing manual and predicted cell-length distributions and object counts per frame"></a><figcaption><strong>Biological quantification</strong><span>Representative cell-length distributions and cell counts from the collaborative poster; not part of the individual Trackastra benchmark.</span></figcaption></figure>
+        </div>
+        <p class="asset-credit">Both images are excerpts of the collaborative PURE project poster by Mahla Entezari and Elif Rana Kinik, supervised by Prof. Dr. Erchan Aptoula and Assoc. Prof. Dr. Meltem Elitas Hartmann. <a href="assets/project-poster.pdf" target="_blank" rel="noopener">View the poster ↗</a></p>
       </div>
     </section>
 
