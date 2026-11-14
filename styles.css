@@ -456,17 +456,13 @@ td:first-child{font-weight:600}
 .collaboration-head{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:end;margin-bottom:34px}
 .collaboration-head p{color:#597367;font-size:13px;line-height:1.85}
 .collaboration-head strong{color:#234f40}
-.collaboration-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;align-items:stretch}
-.collaboration-card{background:#f7fbf7;border:1px solid #c5d9cd;min-width:0;display:flex;flex-direction:column;overflow:hidden}
-.collaboration-card>.collaboration-media{display:block;position:relative;height:340px;flex:none;overflow:hidden;background:#fff;border-bottom:1px solid #e1e9e3}
-/* Absolutely position the image: its intrinsic height can never push past the media frame or overlap captions. */
-.collaboration-card>.collaboration-media img{position:absolute;inset:14px;width:calc(100% - 28px);height:calc(100% - 28px);min-width:0;min-height:0;max-width:none;object-fit:contain}
-.collaboration-card figcaption{display:flex;flex:1;flex-direction:column;align-items:flex-start;gap:9px;padding:23px 26px 25px;background:#f7fbf7}
-.collaboration-kicker{font:700 9px/1.5 var(--mono);letter-spacing:1px;color:#3c8a73}
-.collaboration-card figcaption strong{font:600 22px/1.25 var(--display);letter-spacing:-.6px;color:#152b2d}
-.collaboration-card figcaption p{font-size:12px;line-height:1.8;color:#667e71;max-width:480px}
-.collaboration-expand{font:700 11px/1.6 var(--body);color:#246f5d;border-bottom:1px solid #6aac96;padding-bottom:3px;margin-top:auto}
-.collaboration-expand:hover{color:#15513e}
+.collaboration-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.collaboration-grid figure{background:#f7fbf7;border:1px solid #c5d9cd;min-width:0;display:flex;flex-direction:column}
+.collaboration-grid a{height:330px;display:grid;place-items:center;padding:15px;background:#fff}
+.collaboration-grid img{width:100%;height:100%;object-fit:contain}
+.collaboration-grid figcaption{display:flex;flex-direction:column;gap:9px;padding:22px 24px 25px}
+.collaboration-grid figcaption strong{font:600 21px var(--display)}
+.collaboration-grid figcaption span{font-size:12px;color:#667e71;line-height:1.8}
 @media (max-width:1000px){
  .nav-links{gap:17px}
  .atlas-grid{grid-template-columns:1fr 1fr}
@@ -485,7 +481,7 @@ td:first-child{font-weight:600}
  .architecture-card>a:first-child{aspect-ratio:1.9}
  .dataset-details,.paper-links{grid-template-columns:1fr}
  .dataset-details{gap:9px}
- .collaboration-card>.collaboration-media{height:290px}
+ .collaboration-grid a{height:290px}
  .literature-figure .figure-image-link{height:330px}
 }
 @media (max-width:600px){
@@ -503,7 +499,7 @@ td:first-child{font-weight:600}
  .dataset-hero figcaption{padding:20px}
  .literature-figure .figure-image-link{height:240px;padding:8px}
  .literature-figure figcaption{padding:20px}
- .collaboration-card>.collaboration-media{height:230px}
+ .collaboration-grid a{height:230px;padding:8px}
  .result-diagram{padding:9px}
  .result-diagram figcaption{display:block;padding:13px 5px}
  .result-diagram figcaption span{display:block;margin-bottom:8px}
