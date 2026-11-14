@@ -2,53 +2,122 @@
 
 **Sabancı University · Program for Undergraduate Research (PURE) · Summer 2026**
 
-[**View the project website**](https://en-mah.github.io/Deep-Learning-for-Single-Cell-Analysis-in-Microfluidic-Systems/) · [Research report (PDF)](assets/research-report.pdf) · [Research poster (PDF)](assets/project-poster.pdf)
+**[🌐 Project website](https://en-mah.github.io/Deep-Learning-for-Single-Cell-Analysis-in-Microfluidic-Systems/)** · [Research report (PDF)](assets/research-report.pdf) · [Research poster (PDF)](assets/project-poster.pdf)
 
 **Research intern:** Mahla Entezari  
 **Supervisors:** Prof. Dr. Erchan Aptoula and Assoc. Prof. Dr. Meltem Elitas Hartmann  
-**Internship period:** July 6 – August 20, 2026  
-**Institution:** Sabancı University, Istanbul, Türkiye
+**Internship:** July 6 – August 20, 2026 · **Institution:** Sabancı University, Istanbul, Türkiye
 
 ## Overview
 
-This project investigates **deep-learning methods for bacterial cell segmentation and tracking in time-lapse microscopy**, with the longer-term goal of supporting quantitative analysis of individual cells in microfluidic experiments. Reliable analysis is difficult when bacteria touch, divide, become densely packed, or develop elongated and filamentous morphologies under stress or antibiotic exposure.
+This research investigates **deep-learning methods for bacterial instance segmentation and cell tracking in time-lapse microscopy**. The broader motivation is to enable reliable single-cell measurements of bacterial growth, division, and morphological responses, including in future microfluidic experiments.
 
-The internship combined a literature and dataset review with hands-on benchmarking of existing tools. In particular, I evaluated **Trackastra** on bacterial time-lapse data, compared tracking from ground-truth and predicted segmentation masks, reproduced the segmentation component of the **OmniSegger** workflow with **Omnipose**, and explored **Bactrack** as a MATLAB-free tracking alternative.
+The internship combined a **literature and dataset survey** with practical experiments on **Trackastra, Omnipose, OmniSegger-related data, and Bactrack**. A central question was how errors in predicted cell masks affect downstream tracking and lineage reconstruction.
 
-**Main finding:** A strong tracking model cannot fully compensate for inaccurate segmentation: missed, split, or merged cell masks can substantially reduce downstream tracking performance.
+![Representative bacterial morphologies: raw microscopy, colored instance boundaries, and elongated or filamentous bacteria](assets/bacterial-morphologies.webp)
 
-## Project highlights
+*Figure 1 — Examples of bacterial cells with different morphologies, from the [individual research report](assets/research-report.pdf), Figure 1. Touching and filamentous cells are particularly challenging for segmentation and tracking.*
 
-- Surveyed bacterial segmentation, tracking, and lineage-reconstruction methods and relevant annotated datasets.
-- Deployed **Trackastra** and **Napari-Trackastra**, prepared bacterial sequences, and converted annotations into **Cell Tracking Challenge (CTC)** format.
-- Compared **greedy** and **integer linear programming (ILP)** linking with ground-truth and Omnipose-generated masks.
-- Reproduced **Omnipose** segmentation results on a published **141-frame** sequence and evaluated temporal-link and division-event consistency using **Bactrack**.
-- Studied implications for single-cell growth, division, lineage reconstruction, and antibiotic-related morphological analysis.
+### Research questions
+
+- How do current segmentation methods cope with touching, elongated, and irregularly shaped bacteria?
+- How do tracking methods associate cells between frames and account for mother–daughter divisions?
+- Which public datasets provide masks, temporal links, or lineage annotations suitable for benchmarking?
+- How does replacing ground-truth segmentation with predicted masks change tracking performance?
+
+## Research workflow and visual examples
+
+![Diagram of the overall project workflow: time-lapse microscopy, segmentation, cell detections, tracking, evaluation, and lineage analysis](assets/research-workflow.svg)
+
+*Figure 2 — Original schematic of the modular research workflow. Tracking results depend on the masks produced upstream.*
+
+### Example: microscopy → masks → tracked cells
+
+| Raw phase-contrast frame | Input instance masks | Tracked-cell overlay |
+|:--:|:--:|:--:|
+| ![Raw bacterial microscopy frame](assets/microscopy-raw.webp) | ![Individual segmented bacterial masks](assets/microscopy-masks.webp) | ![Tracking results overlaid on microscopy image](assets/microscopy-tracked.webp) |
+
+*Figure 3 — Selected outputs from the Trackastra experiments. These images illustrate the progression from microscopy to segmented objects and tracked cell identities; see the [full report](assets/research-report.pdf) for the evaluation protocol.*
+
+## Datasets and imaging conditions
+
+The dataset review considered bacterial species, microscopy modality, temporal resolution, available masks, division links, and suitability for evaluating different stages of a pipeline.
+
+### Colony growth changes the difficulty of tracking
+
+![Three frames at t=1, t=50, and t=100 showing a bacterial population becoming denser over time](assets/colony-growth-timelapse.webp)
+
+*Figure 4 — Frames from the **Image-Processing Software Benchmark Dataset** at time points 1, 50, and 100, as shown in the [research report](assets/research-report.pdf), Figure 5. The dataset is described in [Ahmadi et al.'s benchmarking repository](https://github.com/ingallslab/ImageProcessing-Benchmarking). Increasing cell density makes reliable instance separation and association harder.*
+
+### Datasets considered in the Trackastra literature
+
+![Illustrative microscopy and tracking examples from BACTERIA, DeepCell, and VESICLE datasets](assets/trackastra-dataset-examples.webp)
+
+*Figure 5 — Examples of **BACTERIA**, **DeepCell**, and **VESICLE**, reproduced from the literature comparison in the [research report](assets/research-report.pdf), Figure 6; originating from [Gallusser & Weigert, Trackastra (2024)](https://arxiv.org/abs/2405.15700). These are **different training/evaluation domains**, not three datasets benchmarked in my own PURE experiments.*
+
+| Dataset or source | What it provided or motivated | Role in this project |
+|---|---|---|
+| `trpL/150310-11` bacterial sequence | 29 time-lapse frames and tracking annotations converted into CTC format | **Trackastra experiment:** compare ground-truth and Omnipose masks, greedy and ILP linking |
+| OmniSegger proliferation `xy5` | 141 phase-contrast frames and published instance masks | **Reproduction experiment:** Omnipose mask comparison, then Bactrack output agreement |
+| Image-Processing Software Benchmark Dataset | Reference masks, trajectories, parent links, and lineage information | Literature/dataset evaluation and visualization |
+| TrackRefiner, STrack, FAST and other public collections | Varied organisms, morphology, cell density, and tracking annotations | Dataset survey and assessment of future benchmarks |
+
+The hands-on results below apply to the **specific 29-frame and 141-frame sequences** listed here; the other datasets are included as part of the review, not as claims of additional experiments.
+
+## Methods and model architectures
+
+### 1. Omnipose: instance segmentation
+
+Omnipose adapts flow-based segmentation for challenging cell morphologies. Its predictions include spatial information about boundaries, distance, and flow, which is used to reconstruct separate instances even when bacterial cells are long or irregular.
+
+![Conceptual Omnipose pipeline: microscopy image, U-Net style model, boundary/distance/flow predictions, instance masks](assets/omnipose-concept.svg)
+
+*Figure 6 — Original **simplified conceptual diagram**, informed by [Cutler et al., “Omnipose” (2022)](https://doi.org/10.1038/s41592-022-01639-4). It is not an exact layer-by-layer reproduction of the published architecture.*
+
+**Related methods reviewed:** Cellpose, MiSiC, DeLTA 2.0, and other approaches for bacterial and general cellular instance segmentation.
+
+### 2. Trackastra: transformer-based temporal association
+
+Trackastra represents segmented cells as tokens containing object-level features, uses a transformer to predict associations across a temporal window, and generates cell tracks using linking strategies such as greedy optimization or integer linear programming (ILP). It is designed to account for cell division.
+
+![Conceptual Trackastra architecture: segmented cells, object features, tokens, transformer attention, association scores, and linking to cell lineage](assets/trackastra-architecture.svg)
+
+*Figure 7 — Original **simplified conceptual diagram** based on [Gallusser & Weigert, “Trackastra: Transformer-based cell tracking for live-cell microscopy” (2024)](https://arxiv.org/abs/2405.15700). The figure summarizes the method; it is not a verbatim architecture drawing.*
+
+**Other tracking/pipeline approaches reviewed:** STrack, FAST, graph-neural-network tracking, DeLTA 2.0, DiSTNet2D, Cell-TRACTR, and OmniSegger. They differ in their use of object features, temporal context, division constraints, and their dependence on input segmentation.
 
 ## Experimental results
 
-### 1. Trackastra tracking benchmark
+### Experiment A — Trackastra benchmark
 
-**Dataset:** `trpL/150310-11`, 29 time-lapse frames. **Evaluation:** CTC-compatible tracking metrics. The same tracking framework was evaluated with different input masks.
+**Sequence:** `trpL/150310-11` · **Length:** 29 frames · **Evaluation:** CTC-compatible metrics.
 
-| Segmentation masks | Linking | DET ↑ | TRA ↑ | HOTA ↑ | IDF1 ↑ | AOGM ↓ |
+I deployed Trackastra and Napari-Trackastra, prepared the sequence, converted tracking annotations into CTC format, and compared greedy versus ILP linking with ground-truth and Omnipose-generated masks.
+
+| Input masks | Linking | DET ↑ | TRA ↑ | HOTA ↑ | IDF1 ↑ | AOGM ↓ |
 |---|---|---:|---:|---:|---:|---:|
 | Ground truth | Greedy | 0.9945 | 0.9930 | 0.9898 | 0.9863 | 44.5 |
 | **Ground truth** | **ILP** | **1.0000** | **0.9984** | **0.9975** | **0.9964** | **10.0** |
 | Omnipose | Greedy | 0.9804 | 0.9671 | 0.9048 | 0.9047 | 208.0 |
 | Omnipose | ILP | 0.9800 | 0.9668 | 0.9035 | 0.9049 | 210.0 |
 
-With ILP linking, **TRA decreased from 0.9984 with ground-truth masks to 0.9668 with Omnipose masks**. These results are from this specific 29-frame evaluation; they do not establish performance across all bacterial datasets.
+![Visual explanation of how segmentation mask errors affect Trackastra tracking, showing TRA scores of 0.9984 and 0.9668](assets/segmentation-tracking-effect.svg)
 
-![Examples of raw microscopy images, segmentation masks, Trackastra outputs, and tracking overlays](assets/tracking-comparison.webp)
+*Figure 8 — **Experimental TRA scores** for GT/ILP and Omnipose/ILP, accompanied by an **illustrative (not observed frame-by-frame) lineage schematic**. The diagrams do not represent exact reconstructed tracks.*
 
-*Representative Trackastra visualizations from the internship progress report.*
+![Trackastra outputs showing raw microscopy images, input segmentation, predicted tracking, and overlays across selected frames](assets/tracking-comparison.webp)
 
-### 2. OmniSegger / Omnipose reproduction
+*Figure 9 — Actual Trackastra visualization panels from the internship progress report. In the 29-frame test, ILP reached **TRA = 0.9984** with ground-truth masks; when supplied with Omnipose masks, ILP reached **TRA = 0.9668**.*
 
-**Dataset:** OmniSegger proliferation sequence `xy5`, comprising **141 phase-contrast frames**. I ran the pretrained Omnipose `bact_phase_omni` model and compared its masks against the published segmentation outputs.
+**Key observation:** The tracking model was unchanged, but the segmentation input was not. The decrease in tracking performance demonstrates the importance of reliable upstream cell masks for this evaluation sequence.
 
-| Segmentation comparison metric | Result |
+### Experiment B — OmniSegger segmentation reproduction and Bactrack comparison
+
+**Sequence:** OmniSegger proliferation dataset `xy5` · **Length:** 141 phase-contrast images.
+
+I ran the pretrained `bact_phase_omni` Omnipose model on all 141 frames and compared its predicted masks with the published OmniSegger segmentation outputs.
+
+| Segmentation comparison | Value |
 |---|---:|
 | Mean matched IoU | **0.9824** |
 | Precision | 0.9912 |
@@ -56,94 +125,68 @@ With ILP linking, **TRA decreased from 0.9984 with ground-truth masks to 0.9668 
 | F1-score | **0.9825** |
 | Mean absolute cell-count error | 0.206 cells/frame |
 
-For a MATLAB-free tracking experiment, I used **Bactrack** with both the published masks and locally generated Omnipose masks. Comparing matched links between these two runs gave:
+Because the MATLAB/SuperSegger tracking component could not be run on the project server, **Bactrack** was evaluated as a MATLAB-free alternative. Published masks produced 4,818 temporal links and locally generated masks produced 4,816 links. Agreement between these two tracking outputs was:
 
-| Output agreement metric | F1-score |
-|---|---:|
-| Temporal tracking links | **0.9967** |
-| Cell-division events | **0.9613** |
+| Output agreement | Precision | Recall | F1 |
+|---|---:|---:|---:|
+| Temporal links | 0.9987 | 0.9946 | **0.9967** |
+| Division events | 0.9667 | 0.9560 | **0.9613** |
 
-**Interpretation:** The Bactrack F1 values measure **agreement between two pipeline outputs**, not independently validated tracking accuracy against manually curated ground truth. The complete OmniSegger MATLAB/SuperSegger pipeline was not reproduced.
+**Interpretation:** These Bactrack scores measure **agreement between two outputs**, not independently validated accuracy against manual tracking ground truth. The full OmniSegger MATLAB/SuperSegger pipeline was **not** reproduced.
 
-## Research workflow
+## Limitations and research directions
 
-```text
-Time-lapse microscopy images
-             ↓
-Instance segmentation (Omnipose / reference masks)
-             ↓
-Cell detections and masks
-             ↓
-Cell tracking (Trackastra or Bactrack)
-             ↓
-Temporal associations and division links
-             ↓
-Quantitative evaluation and lineage analysis
-```
+The experiments cover selected publicly available sequences, not a comprehensive cross-dataset benchmark. Potential next steps include testing more bacterial species and imaging conditions, analyzing the types of mask errors that damage associations, evaluating lineage continuity over longer movies, and adapting validated methods to microfluidic time-lapse experiments.
 
-The work reviewed methods including **Cellpose, Omnipose, STrack, FAST, Trackastra, DeLTA 2.0, DiSTNet2D, Cell-TRACTR,** and **OmniSegger**, with attention to biological assumptions, data availability, and limitations.
+## Research materials and project scope
 
-## Research materials
+- **[Project website](https://en-mah.github.io/Deep-Learning-for-Single-Cell-Analysis-in-Microfluidic-Systems/)** — visual research presentation hosted with GitHub Pages.
+- **[Individual research report](assets/research-report.pdf)** — dataset and literature review, experimental protocol, results, and references.
+- **[Collaborative project poster](assets/project-poster.pdf)** — broader project context, including CiproSeg and bacterial morphology analysis.
 
-- [**Project website**](https://en-mah.github.io/Deep-Learning-for-Single-Cell-Analysis-in-Microfluidic-Systems/) — visual overview, methods, results, and documentation.
-- [**Individual research report**](assets/research-report.pdf) — literature review, datasets, benchmarks, discussion, and references.
-- [**Collaborative research poster**](assets/project-poster.pdf) — broader project context, including the collaborative CiproSeg work.
-
-**Scope note:** The tracking benchmarks and workflow reproduction above are documented in Mahla Entezari's individual report. The poster covers a wider collaborative project, including CiproSeg segmentation and biological morphology measurements; those contributions should not be interpreted as solely my individual work.
+**Attribution and scope:** The Trackastra benchmarking, Omnipose reproduction, and Bactrack comparison described here are documented in Mahla Entezari's individual report. The collaborative poster also discusses **CiproSeg U-Net development and biological measurements**; these are not presented here as solely my individual work. Images originating from published datasets or papers remain attributable to their original authors; original schematic figures in this README are explicitly labeled.
 
 ## Repository structure
 
 ```text
 .
-├── index.html                 # Research website content
-├── styles.css                 # Responsive website styling
-├── .nojekyll                  # GitHub Pages configuration
-├── README.md                  # Project documentation
+├── index.html
+├── styles.css
+├── .nojekyll
+├── README.md
 └── assets/
-    ├── favicon.svg
+    ├── bacterial-morphologies.webp
+    ├── colony-growth-timelapse.webp
+    ├── trackastra-dataset-examples.webp
+    ├── research-workflow.svg
+    ├── omnipose-concept.svg
+    ├── trackastra-architecture.svg
+    ├── segmentation-tracking-effect.svg
     ├── microscopy-raw.webp
     ├── microscopy-masks.webp
     ├── microscopy-tracked.webp
     ├── tracking-comparison.webp
     ├── research-report.pdf
-    └── project-poster.pdf
+    ├── project-poster.pdf
+    └── favicon.svg
 ```
 
-This repository currently hosts the **research project website and supporting documents**, rather than a standalone release of the benchmarking scripts or trained models. The site is built with **HTML and CSS** and requires no build step or JavaScript dependencies.
+The repository hosts the **research website and documentation**; it is not a public release of training code, trained model weights, or benchmarking scripts.
 
-### Run the website locally
-
-Clone the repository:
+### View locally
 
 ```bash
 git clone https://github.com/En-Mah/Deep-Learning-for-Single-Cell-Analysis-in-Microfluidic-Systems.git
 cd Deep-Learning-for-Single-Cell-Analysis-in-Microfluidic-Systems
-```
-
-Open `index.html` in your browser. Alternatively, run a local server:
-
-```bash
 python3 -m http.server 8000
 ```
 
-Then visit `http://localhost:8000`.
-
-### Publish with GitHub Pages
-
-In **Settings → Pages**, choose **Deploy from a branch**, select `main` and `/ (root)`, and save. The expected project URL is:
-
-**https://en-mah.github.io/Deep-Learning-for-Single-Cell-Analysis-in-Microfluidic-Systems/**
-
-## Limitations and next steps
-
-The experiments represent specific bacterial time-lapse sequences rather than a comprehensive cross-dataset benchmark. Future work could include testing more species and experimental conditions, characterizing segmentation error propagation, improving lineage consistency, and validating tracking and morphological measurements in longer microfluidic time-lapse experiments.
+Open <http://localhost:8000> in your browser. To publish from GitHub, go to **Settings → Pages**, select **Deploy from a branch → `main` → `/ (root)`**, and save.
 
 ## Acknowledgments
 
-I am grateful to **Prof. Dr. Erchan Aptoula** and **Assoc. Prof. Dr. Meltem Elitas Hartmann** for supervising this work, and to **Sabancı University's PURE program** for the research opportunity. The accompanying collaborative poster also credits **Elif Rana Kinik**.
-
-The tools and datasets discussed remain the work of their respective authors and maintainers. See the [research report](assets/research-report.pdf) for the scientific references.
+I thank **Prof. Dr. Erchan Aptoula** and **Assoc. Prof. Dr. Meltem Elitas Hartmann** for their supervision and the **Sabancı University PURE program** for the research opportunity. The collaborative poster also acknowledges **Elif Rana Kinik**. All third-party tools and research datasets belong to their respective authors and maintainers; full scientific references are provided in the [research report](assets/research-report.pdf).
 
 ---
 
-*Project completed during the Sabancı University PURE 2026 summer research program.*
+*Completed during the Sabancı University PURE Summer 2026 program.*
