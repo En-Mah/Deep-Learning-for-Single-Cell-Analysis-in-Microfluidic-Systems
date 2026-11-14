@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0c1c23">
+  <meta name="description" content="Deep Learning for Single-Cell Analysis in Microfluidic Systems — a 2026 Sabancı University PURE research project exploring bacterial cell segmentation, transformer-based tracking, and lineage analysis.">
+  <meta name="author" content="Mahla Entezari">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Deep Learning for Single-Cell Analysis | Mahla Entezari">
+  <meta property="og:description" content="A computational microscopy research project: bacterial segmentation, Trackastra benchmarking, and OmniSegger reproduction at Sabancı University PURE 2026.">
+  <title>Deep Learning for Single-Cell Analysis | Mahla Entezari</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <nav class="nav shell" aria-label="Main navigation">
+      <a href="#top" class="brand" aria-label="Single-cell project, back to top">
+        <span class="brand-icon" aria-hidden="true"><span></span><span></span><span></span></span>
+        <span class="brand-text">CELL<span> / </span>TRACE</span>
+      </a>
+      <div class="nav-links">
+        <a href="#overview">Overview</a>
+        <a href="#methods">Methods</a>
+        <a href="#results">Results</a>
+        <a href="#resources">Resources</a>
+      </div>
+      <details class="mobile-menu">
+        <summary>Menu <span aria-hidden="true">+</span></summary>
+        <div class="mobile-menu-links">
+          <a href="#overview">Overview</a>
+          <a href="#methods">Methods</a>
+          <a href="#results">Results</a>
+          <a href="#resources">Resources</a>
+          <a href="assets/research-report.pdf" target="_blank" rel="noopener">Research report ↗</a>
+        </div>
+      </details>
+      <a class="nav-cta" href="assets/research-report.pdf" target="_blank" rel="noopener">Research report <span aria-hidden="true">↗</span></a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="hero-noise" aria-hidden="true"></div>
+      <div class="shell hero-grid">
+        <div class="hero-copy">
+          <div class="eyebrow eyebrow-light"><span class="eyebrow-dot"></span> SABANCI UNIVERSITY <span class="eyebrow-divider">/</span> PURE 2026</div>
+          <h1 id="hero-title">Tracking life,<br><em>cell by cell.</em></h1>
+          <p class="hero-project-name">Deep Learning for Single-Cell Analysis in Microfluidic Systems</p>
+          <p class="hero-description">Exploring how deep learning can segment, identify, and follow individual bacterial cells through time-lapse microscopy — and what happens when an imperfect segmentation changes the story.</p>
+          <div class="hero-actions">
+            <a class="button button-accent" href="#results">Explore the results <span aria-hidden="true">↗</span></a>
+            <a class="button button-outline" href="#overview">Discover the project <span aria-hidden="true">↓</span></a>
+          </div>
+          <div class="hero-byline"><span class="byline-line" aria-hidden="true"></span><div><strong>Mahla Entezari</strong><span>Undergraduate Research Internship · Summer 2026</span></div></div>
+        </div>
+
+        <div class="hero-visual" aria-label="Scientific image panel showing raw and tracked bacterial microscopy frames from the project report">
+          <div class="visual-halo" aria-hidden="true"></div>
+          <div class="microscope-panel">
+            <div class="panel-bar"><div class="panel-led"><span></span> MICROSCOPY / TIME-LAPSE</div><div class="panel-id">EXP_01 · T29</div></div>
+            <div class="panel-images">
+              <figure class="panel-image"><div class="panel-image-frame"><img src="assets/microscopy-raw.webp" alt="Raw microscopy frame showing a small growing bacterial colony" width="404" height="312"></div><figcaption>01 / RAW IMAGE</figcaption></figure>
+              <figure class="panel-image"><div class="panel-image-frame"><img src="assets/microscopy-tracked.webp" alt="The same bacterial colony with colored tracking identities overlaid" width="416" height="312"></div><figcaption>02 / TRACKED CELLS</figcaption></figure>
+            </div>
+            <div class="panel-bottom"><span class="signal-indicator"><i></i> INSTANCE ASSOCIATION</span><span>FRAME 029 / 029</span></div>
+            <div class="progress-track"><span></span></div>
+          </div>
+          <div class="floating-note"><span class="floating-symbol" aria-hidden="true">↗</span><div><strong>From pixels<br>to lineages</strong><span>Computer vision × biology</span></div></div>
+          <div class="visual-crosshair crosshair-a" aria-hidden="true">+</div><div class="visual-crosshair crosshair-b" aria-hidden="true">+</div>
+        </div>
+      </div>
+      <div class="shell hero-footer"><span>RESEARCH / COMPUTER VISION / COMPUTATIONAL BIOLOGY</span><span>ISTANBUL, TÜRKİYE &nbsp; · &nbsp; JUL—AUG 2026</span></div>
+    </section>
+
+    <section class="metrics-section" aria-label="Selected project metrics">
+      <div class="shell metrics-grid">
+        <div class="metric"><div class="metric-value">0.9984<span class="metric-plus">TRA</span></div><p>Trackastra + ILP<br><span>with ground-truth masks</span></p></div>
+        <div class="metric"><div class="metric-value">0.9824<span class="metric-plus">IoU</span></div><p>Mean matched overlap<br><span>Omnipose reproduction</span></p></div>
+        <div class="metric"><div class="metric-value">0.9967<span class="metric-plus">F1</span></div><p>Temporal-link agreement<br><span>between Bactrack runs</span></p></div>
+        <div class="metric"><div class="metric-value">141<span class="metric-plus">FRAMES</span></div><p>Phase-contrast images<br><span>processed in reproduction</span></p></div>
+      </div>
+    </section>
+
+    <section class="section overview" id="overview" aria-labelledby="overview-title">
+      <div class="shell section-grid">
+        <div class="section-intro"><div class="eyebrow">01 <span class="eyebrow-rule"></span> THE RESEARCH QUESTION</div><h2 id="overview-title">Small cells.<br><span>Complex stories.</span></h2></div>
+        <div class="overview-body"><p class="lead">An individual bacterium can grow, divide, change shape, and become difficult to distinguish from its neighbors. Tracking that behavior automatically is a deceptively hard problem.</p><p>Time-lapse microscopy produces hundreds of images containing small, similar-looking cells. Dense colonies, touching boundaries, and antibiotic-induced elongation can challenge even strong computer-vision models.</p><p>Our central question was: <strong>How do existing segmentation and tracking methods perform, and how does the quality of a cell mask affect the accuracy of its reconstructed trajectory and lineage?</strong></p><div class="research-tags" aria-label="Research themes"><span>Biomedical image analysis</span><span>Cell segmentation</span><span>Temporal association</span><span>Lineage reconstruction</span></div></div>
+      </div>
+    </section>
+
+    <section class="section methods-section" id="methods" aria-labelledby="methods-title">
+      <div class="shell">
+        <div class="section-heading section-heading-on-dark"><div><div class="eyebrow eyebrow-light">02 <span class="eyebrow-rule"></span> METHODOLOGY</div><h2 id="methods-title">From an image<br><span>to an identity.</span></h2></div><p>This research used a modular view of the single-cell analysis workflow. The methods below were studied and evaluated across two separate experimental setups.</p></div>
+        <div class="method-flow" aria-label="Conceptual segmentation and tracking workflow">
+          <article class="flow-card"><div class="flow-num">01 <span class="flow-arrow" aria-hidden="true">↗</span></div><div class="flow-art flow-art-image"><svg viewBox="0 0 220 110" role="img" aria-label="Illustration of phase-contrast bacteria"><rect x="0" y="0" width="220" height="110" fill="#173139"/><g fill="#88a5a8" stroke="#d3e2df" stroke-width="2" opacity=".86"><rect x="25" y="25" width="56" height="16" rx="8" transform="rotate(-25 53 33)"/><rect x="128" y="22" width="40" height="15" rx="7" transform="rotate(18 148 29)"/><rect x="72" y="69" width="60" height="15" rx="7" transform="rotate(23 102 76)"/><rect x="165" y="73" width="36" height="15" rx="7" transform="rotate(-36 183 81)"/></g></svg></div><h3>Microscopy</h3><p>Read time-lapse phase-contrast images of individual bacterial cells and colonies.</p><div class="flow-meta">INPUT / IMAGE FRAMES</div></article>
+          <article class="flow-card"><div class="flow-num">02 <span class="flow-arrow" aria-hidden="true">↗</span></div><div class="flow-art"><svg viewBox="0 0 220 110" role="img" aria-label="Illustration of distinct cell segmentation masks"><g stroke="#0e2328" stroke-width="1"><rect x="30" y="26" width="57" height="18" rx="9" transform="rotate(-25 58 35)" fill="#9bedcd"/><rect x="128" y="20" width="48" height="17" rx="8" transform="rotate(18 152 29)" fill="#f5cb8d"/><rect x="72" y="68" width="65" height="18" rx="9" transform="rotate(23 104 77)" fill="#acb9f7"/><rect x="162" y="70" width="43" height="18" rx="9" transform="rotate(-36 183 79)" fill="#ffc4bf"/></g></svg></div><h3>Segmentation</h3><p>Convert each frame into instance masks that isolate individual bacterial objects.</p><div class="flow-meta">MODEL / OMNIPOSE</div></article>
+          <article class="flow-card"><div class="flow-num">03 <span class="flow-arrow" aria-hidden="true">↗</span></div><div class="flow-art"><svg viewBox="0 0 220 110" role="img" aria-label="Illustration of temporal connections between cells"><g stroke="#8dbaa9" stroke-width="2" fill="none"><path d="M38 28 L109 28 L178 18"/><path d="M109 28 L178 75"/><path d="M37 82 L108 72 L179 75"/></g><g fill="#b4f6d9" stroke="#12363a" stroke-width="3"><circle cx="38" cy="28" r="10"/><circle cx="109" cy="28" r="10"/><circle cx="178" cy="18" r="10"/><circle cx="178" cy="75" r="10"/><circle cx="37" cy="82" r="10"/><circle cx="108" cy="72" r="10"/></g></svg></div><h3>Tracking</h3><p>Link cells across frames while accounting for growth and mother–daughter division events.</p><div class="flow-meta">MODEL / TRACKASTRA · BACTRACK</div></article>
+          <article class="flow-card"><div class="flow-num">04 <span class="flow-arrow" aria-hidden="true">↗</span></div><div class="flow-art"><svg viewBox="0 0 220 110" role="img" aria-label="Illustration of measured tracking accuracy"><path d="M21 89H201" stroke="#49626b" stroke-width="2"/><rect x="34" y="42" width="29" height="47" fill="#5d8b87"/><rect x="81" y="21" width="29" height="68" fill="#a8f3d0"/><rect x="128" y="30" width="29" height="59" fill="#70d5bc"/><rect x="175" y="52" width="24" height="37" fill="#5d8b87"/><path d="M34 31L83 16L143 21L186 39" stroke="#dfd8b4" stroke-width="2" fill="none"/></svg></div><h3>Evaluation</h3><p>Compare masks and links using IoU, TRA, HOTA, precision, recall, and F1.</p><div class="flow-meta">OUTPUT / QUANTITATIVE METRICS</div></article>
+        </div>
+        <div class="methods-bottom"><span><span class="bottom-accent" aria-hidden="true">✳</span> A modular research pipeline</span><p>Segmentation errors propagate downstream: a missing or merged cell can break an otherwise correct lineage.</p></div>
+      </div>
+    </section>
+
+    <section class="section experiment-section" aria-labelledby="experiments-title">
+      <div class="shell"><div class="section-heading"><div><div class="eyebrow">03 <span class="eyebrow-rule"></span> EXPERIMENTAL DESIGN</div><h2 id="experiments-title">Two experiments.<br><span>One key connection.</span></h2></div><p>Each experiment isolates a different part of the segmentation–tracking problem so that the findings remain interpretable.</p></div>
+      <div class="experiments-grid">
+        <article class="experiment-card"><div class="experiment-card-top"><span class="experiment-label">EXPERIMENT 01</span><span class="experiment-icon" aria-hidden="true">↗</span></div><h3>Trackastra<br>benchmark</h3><p>Ran transformer-based tracking on a 29-frame bacterial time-lapse sequence, first with ground-truth masks and then with Omnipose predictions.</p><dl><div><dt>Dataset</dt><dd>trpL / 150310-11 · 29 frames</dd></div><div><dt>Mask inputs</dt><dd>Ground truth vs. Omnipose</dd></div><div><dt>Linkers</dt><dd>Greedy vs. ILP</dd></div></dl><a href="#trackastra-results" class="inline-link">View benchmark results <span aria-hidden="true">↗</span></a></article>
+        <article class="experiment-card experiment-card-soft"><div class="experiment-card-top"><span class="experiment-label">EXPERIMENT 02</span><span class="experiment-icon" aria-hidden="true">↗</span></div><h3>OmniSegger<br>reproduction</h3><p>Reproduced published segmentation results with a pretrained Omnipose model and evaluated a MATLAB-free Bactrack alternative.</p><dl><div><dt>Dataset</dt><dd>Proliferation / xy5 · 141 frames</dd></div><div><dt>Segmenter</dt><dd>Omnipose · bact_phase_omni</dd></div><div><dt>Tracker</dt><dd>Bactrack · two mask sets</dd></div></dl><a href="#omnisegger-results" class="inline-link">View reproduction results <span aria-hidden="true">↗</span></a></article>
+      </div></div>
+    </section>
+
+    <section class="section results-section" id="results" aria-labelledby="results-title">
+      <div class="shell">
+        <div class="results-header"><div class="eyebrow eyebrow-light">04 <span class="eyebrow-rule"></span> FINDINGS</div><h2 id="results-title">The results tell<br><span>a clear story.</span></h2><p>Strong tracking algorithms still rely on accurate detections. A small change in the input masks can materially change downstream lineage performance.</p></div>
+        <div class="result-feature" id="trackastra-results">
+          <div class="result-feature-copy"><span class="number-tag">FINDING 01 <span class="number-tag-dot">·</span> TRACKASTRA</span><h3>Great tracking starts with <em>good masks.</em></h3><p>With ground-truth masks, ILP linking achieved a TRA score of <strong>0.9984</strong>. Replacing those masks with Omnipose predictions reduced TRA to <strong>0.9668</strong> in the same 29-frame evaluation, even though the tracking model was unchanged.</p><div class="delta"><span class="delta-symbol" aria-hidden="true">↓</span><div><strong>3.16 percentage points</strong><span>TRA decrease with predicted masks (ILP)</span></div></div><p class="fine-print">Measured on a single bacterial time-lapse sequence; the difference should not be generalized without additional datasets.</p></div>
+          <div class="comparison-widget" aria-label="TRA scores for Trackastra with ILP: 0.9984 using ground-truth masks and 0.9668 using Omnipose masks"><div class="comparison-widget-top"><span>TRACKING ACCURACY</span><span>METRIC / TRA ↑</span></div><div class="comparison-row"><div class="comparison-label"><span>Ground-truth masks</span><strong>0.9984</strong></div><div class="comparison-track"><span class="bar bar-gt" style="--bar-width:99.84%"></span></div><span class="comparison-caption">ILP linking</span></div><div class="comparison-row"><div class="comparison-label"><span>Omnipose masks</span><strong>0.9668</strong></div><div class="comparison-track"><span class="bar bar-pred" style="--bar-width:96.68%"></span></div><span class="comparison-caption">ILP linking</span></div><div class="comparison-note"><span class="note-line" aria-hidden="true"></span><p><strong>Same tracker. Different masks.</strong><br>Missed, merged, or split cell detections are difficult for a downstream tracker to repair.</p></div></div>
+        </div>
+        <div class="table-card"><div class="table-card-heading"><h3>Trackastra benchmark — full results</h3><span>29-FRAME SEQUENCE / CTC EVALUATION</span></div><div class="table-scroll"><table><caption class="sr-only">Trackastra tracking benchmark using ground-truth and Omnipose masks with greedy and integer linear programming linking</caption><thead><tr><th scope="col">Segmentation input</th><th scope="col">Linking</th><th scope="col">DET ↑</th><th scope="col">TRA ↑</th><th scope="col">HOTA ↑</th><th scope="col">IDF1 ↑</th><th scope="col">AOGM ↓</th></tr></thead><tbody><tr><td>Ground truth</td><td>Greedy</td><td>0.9945</td><td>0.9930</td><td>0.9898</td><td>0.9863</td><td>44.5</td></tr><tr class="table-best"><td>Ground truth <span class="tiny-chip">BEST TRA</span></td><td>ILP</td><td>1.0000</td><td><strong>0.9984</strong></td><td>0.9975</td><td>0.9964</td><td>10.0</td></tr><tr><td>Omnipose</td><td>Greedy</td><td>0.9804</td><td>0.9671</td><td>0.9048</td><td>0.9047</td><td>208.0</td></tr><tr><td>Omnipose</td><td>ILP</td><td>0.9800</td><td>0.9668</td><td>0.9035</td><td>0.9049</td><td>210.0</td></tr></tbody></table></div><p class="table-footnote">Results from the project’s independent trpL/150310-11 experiment. These are not results from the separate custom 50-frame comparison in the broader project.</p></div>
+        <figure class="tracking-figure"><img src="assets/tracking-comparison.webp" loading="lazy" alt="Three time points from a tracking experiment, each showing raw bacterial microscopy, input masks, tracked objects, and an overlay of tracking identities on the original image" width="1684" height="1084"><figcaption><span>FIGURE 01</span> Trackastra tracking examples at three selected frames. Each row shows raw input, segmentation, tracking output, and the corresponding overlay. Adapted from the project report, Figure 7.</figcaption></figure>
+        <div class="second-results" id="omnisegger-results"><div><span class="number-tag">FINDING 02 <span class="number-tag-dot">·</span> OMNISEGGER / BACTRACK</span><h3>Reproducible masks.<br><em>Consistent links.</em></h3><p>On the 141-frame <em>xy5</em> sequence, the local Omnipose run closely reproduced the published segmentation outputs. Bactrack then produced highly consistent temporal links across both mask sets.</p><p class="fine-print">Tracking and division F1 values here measure agreement between two Bactrack runs, not accuracy against independently annotated tracking ground truth.</p></div><div class="outcome-grid"><div class="outcome"><span>SEGMENTATION</span><strong>0.9824</strong><p>Mean matched IoU</p></div><div class="outcome"><span>SEGMENTATION</span><strong>0.9825</strong><p>F1 score</p></div><div class="outcome"><span>TRACK AGREEMENT</span><strong>0.9967</strong><p>Temporal-link F1</p></div><div class="outcome"><span>DIVISION AGREEMENT</span><strong>0.9613</strong><p>Division-event F1</p></div></div></div>
+        <div class="results-takeaway"><span class="asterisk" aria-hidden="true">✳</span><p>Across both experiments, the same conclusion emerged: <strong>segmentation is not just a preprocessing step. It is a determining factor in the reliability of single-cell tracking.</strong></p></div>
+      </div>
+    </section>
+
+    <section class="section next-section" aria-labelledby="next-title"><div class="shell next-grid"><div><div class="eyebrow">05 <span class="eyebrow-rule"></span> WHAT COMES NEXT</div><h2 id="next-title">Beyond the<br><span>benchmark.</span></h2></div><div class="next-content"><p>These experiments establish a useful starting point, but the evaluation was limited to one 29-frame tracking sequence and one 141-frame reproduction sequence. Broader validation is needed before generalizing.</p><div class="next-list"><div><span>01</span><p><strong>Test across more conditions</strong> Compare different bacterial densities, morphologies, and imaging conditions.</p></div><div><span>02</span><p><strong>Isolate specific error types</strong> Separate missed cells, merges, splits, identity switches, and division errors.</p></div><div><span>03</span><p><strong>Extend to longer experiments</strong> Apply the workflow to microfluidic time-lapse data and longitudinal single-cell measurements.</p></div></div></div></div></section>
+
+    <section class="section resources-section" id="resources" aria-labelledby="resources-title"><div class="shell"><div class="section-heading"><div><div class="eyebrow">06 <span class="eyebrow-rule"></span> DOCUMENTATION</div><h2 id="resources-title">Explore the<br><span>full research.</span></h2></div><p>The project report documents the literature survey, datasets, experimental design, results, limitations, and references. The collaborative poster provides the wider project context.</p></div><div class="resource-grid"><a class="resource-card" href="assets/research-report.pdf" target="_blank" rel="noopener"><div class="resource-top"><span>PDF / 11 PAGES</span><span class="resource-arrow" aria-hidden="true">↗</span></div><div class="resource-icon" aria-hidden="true">01<span>↗</span></div><h3>Research report</h3><p>Methods, benchmarks, findings, and discussion of the cell segmentation–tracking experiments.</p><span class="resource-action">Open project report ↗</span></a><a class="resource-card" href="assets/project-poster.pdf" target="_blank" rel="noopener"><div class="resource-top"><span>PDF / RESEARCH POSTER</span><span class="resource-arrow" aria-hidden="true">↗</span></div><div class="resource-icon" aria-hidden="true">02<span>↗</span></div><h3>Project poster</h3><p>Collaborative overview of deep learning, bacterial morphology, and single-cell analysis.</p><span class="resource-action">Open project poster ↗</span></a></div></div></section>
+
+    <section class="credits-section" aria-labelledby="credits-title"><div class="shell credits-grid"><div><div class="eyebrow eyebrow-light">RESEARCH CREDITS</div><h2 id="credits-title">Built at the intersection<br>of biology & computation.</h2></div><div class="credits-details"><div><span>RESEARCH INTERN</span><strong>Mahla Entezari</strong></div><div><span>SUPERVISORS</span><strong>Prof. Dr. Erchan Aptoula<br>Assoc. Prof. Dr. Meltem Elitas Hartmann</strong></div><div><span>COLLABORATIVE PROJECT POSTER</span><strong>Mahla Entezari · Elif Rana Kinik</strong></div><div><span>PROGRAM</span><strong>Program for Undergraduate Research (PURE)<br>Sabancı University · July 6 – August 20, 2026</strong></div></div></div><div class="shell credit-note">The benchmark experiments presented on this page are documented in Mahla Entezari’s individual project report. The poster additionally describes a wider collaborative effort involving CiproSeg and biological morphology analysis. External methods and datasets remain the work of their respective authors.</div></section>
+  </main>
+
+  <footer class="site-footer"><div class="shell footer-inner"><a class="footer-logo" href="#top">CELL / TRACE <span>✳</span></a><p>Deep Learning for Single-Cell Analysis<br>Sabancı University PURE · 2026</p><div class="footer-links"><a href="assets/research-report.pdf" target="_blank" rel="noopener">Report ↗</a><a href="assets/project-poster.pdf" target="_blank" rel="noopener">Poster ↗</a><a href="mailto:MahlaEntezariii@gmail.com">Contact ↗</a></div></div><div class="shell footer-bottom"><span>RESEARCH BY MAHLA ENTEZARI</span><span>DESIGNED FOR GITHUB PAGES</span></div></footer>
+</body>
+</html>
